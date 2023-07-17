@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { ContactForm } from "./ContactForm/ContactForm";
 import { Filter } from "./Filter/Filter";
 import { ContactList } from "./ContactList/ContactList";
+import { AppSection ,TitleOne} from "./APP.styled";
 
 export class App extends Component {
 
@@ -52,10 +53,14 @@ export class App extends Component {
     const searchResult = this.state.contacts.find(contact => contact.name === data.name);
     if (!searchResult) {
        
-      return this.formSubmitHandler(data);
+      this.formSubmitHandler(data);
+      return true;
       
     }
-    else { return alert(`${data.name} is already in contacts`); }
+    else {
+      alert(`${data.name} is already in contacts`);
+      return false;
+    }
     
   }
 
@@ -73,14 +78,14 @@ export class App extends Component {
     
     const visibleContacts = this.calculateFilteredContacts();
   return(
-    <div>
-      <h1>Phonebook</h1>
+    <AppSection>
+      <TitleOne>Phonebook</TitleOne>
       <ContactForm    onAlert={this.alertSearchHandler} />
       <h2>Contacts</h2>
       <Filter filter={this.state.filter } onChange={this.inputChangeValue} />
       <ContactList list={visibleContacts} onDeleteItem={this.deleteItem} />
      
-    </div>
+    </AppSection>
   );
   }
   

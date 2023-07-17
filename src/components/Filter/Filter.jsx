@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { FilterStyle,FilterInput,FilterLabel } from "./Filter.styled";
 
 export class Filter extends Component {
 
@@ -7,16 +8,16 @@ export class Filter extends Component {
     render() {
         const { filter, onChange } = this.props;
         return (
-            <div>
-                <label>Find contact by Name
-                 <input
+            <FilterStyle>
+                <FilterLabel>Find contact by Name 
+                 <FilterInput
                  type="text"
                  name="filter"
                  value={filter}
                   onChange={onChange}
-                 ></input>
-                </label>
-         </div>
+                 ></FilterInput>
+                </FilterLabel>
+         </FilterStyle>
 
      )
     }
