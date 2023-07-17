@@ -79,6 +79,7 @@ export class App extends Component {
     const visibleContacts = this.calculateFilteredContacts();
   return(
     <AppSection>
+      
       <TitleOne>Phonebook</TitleOne>
       <ContactForm    onAlert={this.alertSearchHandler} />
       <h2>Contacts</h2>

@@ -1,28 +1,29 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { FormStyle,InputStyle,ButtonStyle,Label } from "./ContactForm.styled";
-// import { nanoid } from 'nanoid';
+
 
 export class ContactForm extends Component{
     state={
        name:'',
        number:'',
     }
+    
    inputChangeValue=evt=> {
     const newName = evt.target.value;
     const key = evt.target.name;
-      return this.setState(prevState => {
-    
-        return { [key]:  newName } 
-    })
+      return this.setState(     
+         { [key]:  newName } )
     }
+
+
     handleSubmit = evt => {
         evt.preventDefault();
         if (this.props.onAlert(this.state)) {
             this.setState({ name: '', number: '' });
         }
-
     }
+
 
     render(){
        
