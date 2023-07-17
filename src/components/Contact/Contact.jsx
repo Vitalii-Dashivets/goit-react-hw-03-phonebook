@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 
 export function Contact ({contact, onDelItem}) {
     const {  name, number } = contact;
@@ -8,4 +9,12 @@ export function Contact ({contact, onDelItem}) {
         </li>
     )
 
+}
+
+Contact.propTypes = {
+    contact: PropTypes.shape({
+      name: PropTypes.string,
+      number : PropTypes.string,
+    }),
+    onDelItem: PropTypes.func,
 }

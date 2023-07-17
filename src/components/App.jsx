@@ -47,11 +47,18 @@ export class App extends Component {
     return filteredContacts.length === 0 ? contacts : filteredContacts;
   }
   
+
   alertSearchHandler = (data) => {
     const searchResult = this.state.contacts.find(contact => contact.name === data.name);
-    if (!searchResult) { this.formSubmitHandler(data); } else { alert(`${data.name} is already in contacts`); }
+    if (!searchResult) {
+       
+      return this.formSubmitHandler(data);
+      
+    }
+    else { return alert(`${data.name} is already in contacts`); }
     
   }
+
 
   deleteItem = (contactId) => {
     this.setState(prevValue => ({
@@ -72,8 +79,7 @@ export class App extends Component {
       <h2>Contacts</h2>
       <Filter filter={this.state.filter } onChange={this.inputChangeValue} />
       <ContactList list={visibleContacts} onDeleteItem={this.deleteItem} />
-         
-      
+     
     </div>
   );
   }
