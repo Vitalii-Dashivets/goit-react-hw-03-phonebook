@@ -18,33 +18,26 @@ export class App extends Component {
   };
 
   inputChangeValue = evt => {
-    const newName = evt.target.value;
-    const key = evt.target.name;
-    return this.setState(prevState => {
-      return { [key]: newName };
+    return this.setState({
+      [evt.target.name]: evt.target.value,
     });
   };
 
   formSubmitHandler = data => {
-    const newId = nanoid();
     return this.setState(prevValue => ({
-      contacts: [
-        { id: newId, name: data.name, number: data.number },
-        ...prevValue.contacts,
-      ],
+      contacts: [{ id: nanoid(), ...data }, ...prevValue.contacts],
     }));
   };
 
   calculateFilteredContacts = () => {
     const { contacts } = this.state;
     const normalizedFilter = this.state.filter.toLowerCase();
-    const filteredContacts = contacts.filter(contact => {
+    return contacts.filter(contact => {
       return contact.name.toLowerCase().includes(normalizedFilter, 0);
     });
-    return filteredContacts.length === 0 ? contacts : filteredContacts;
   };
 
-  alertSearchHandler = data => {
+  formSubmitSearchHandler = data => {
     const searchResult = this.state.contacts.find(
       contact => contact.name === data.name
     );
@@ -68,7 +61,7 @@ export class App extends Component {
     return (
       <AppSection>
         <TitleOne>Phonebook</TitleOne>
-        <ContactForm onAlert={this.alertSearchHandler} />
+        <ContactForm onSubmitHandler={this.formSubmitSearchHandler} />
         <h2>Contacts</h2>
         <Filter filter={this.state.filter} onChange={this.inputChangeValue} />
         <ContactList list={visibleContacts} onDeleteItem={this.deleteItem} />

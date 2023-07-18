@@ -21,7 +21,7 @@ export class ContactForm extends Component {
 
   handleSubmit = evt => {
     evt.preventDefault();
-    if (this.props.onAlert(this.state)) {
+    if (this.props.onSubmitHandler(this.state)) {
       this.setState({ name: '', number: '' });
     }
   };
